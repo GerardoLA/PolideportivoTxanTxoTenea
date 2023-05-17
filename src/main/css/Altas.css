@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+.container{
+		margin-top:4rem;
+		background-color:#f8f9fa;
+		padding: 20px;
+		border: 1px solid #dee2e6;
+		border-radius: 5px;
+		
+	}
+	
+	h1 {
+		text-align:center;
+		
+	}

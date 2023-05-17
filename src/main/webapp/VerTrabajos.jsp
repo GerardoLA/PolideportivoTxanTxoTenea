@@ -19,12 +19,8 @@
 		</form>
 	</div>
 	<div class="intro">
-	<p> <h2 style="color: red;">${error}</h2>  <h2 style="color: green;">${confirmacion}</h2> </p>
 			<table class="table table-striped">
                       <thead style="background-color: #002d72;">
-               <tr>
-		  			<th colspan=2 style="text-align:center"><h2>VER TRABAJOS</h2></th>
-		  		</tr>
     			<tr>
      				 <th scope="col">ID__TRABAJO</th>
       				<th scope="col">NOMBRE</th>

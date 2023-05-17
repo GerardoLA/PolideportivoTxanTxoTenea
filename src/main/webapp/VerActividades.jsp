@@ -18,12 +18,8 @@
 		</form>
 	</div>
 	<div class="intro">
-	<p> <h2 style="color: red;">${error}</h2>  <h2 style="color: green;">${confirmacion}</h2> </p>
 		<table class="table table-striped">
 		  <thead style="background-color: #002d72;">
-		  <tr>
-		  	<th colspan=8 style="text-align:center"><h2>VER ACTIVIDADES</h2></th>
-		  </tr>
 			<tr>
 				<th scope="col">ACTIVIDAD</th>
 				<th scope="col">GRUPO</th>

@@ -41,7 +41,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}		
 }
@@ -69,7 +69,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}
 		
@@ -102,7 +102,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -138,7 +138,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 			
 		return empleado;
@@ -174,7 +174,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return empleado;
@@ -209,7 +209,7 @@ public class ModeloJefe extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return empleados;
@@ -239,7 +239,7 @@ public class ModeloJefe extends Conector{
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return false;
@@ -269,7 +269,7 @@ public class ModeloJefe extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return usuario;
@@ -299,7 +299,7 @@ public class ModeloJefe extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return usuario;
@@ -330,7 +330,7 @@ public class ModeloJefe extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 		
-			
+			e.printStackTrace();
 		}
 		
 		return usuarios;
@@ -354,10 +354,10 @@ public class ModeloJefe extends Conector{
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -384,7 +384,7 @@ public class ModeloJefe extends Conector{
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return usuarios;
@@ -413,7 +413,7 @@ public class ModeloJefe extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return trabajo;	
@@ -437,7 +437,7 @@ public class ModeloJefe extends Conector{
 			trabajo.setNombre(resultado.getString("nombre"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return trabajo;	
@@ -464,7 +464,7 @@ public class ModeloJefe extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return trabajos;
@@ -484,7 +484,7 @@ public class ModeloJefe extends Conector{
 			cerrar();
 			return true;
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			return false;
 		}
 	}

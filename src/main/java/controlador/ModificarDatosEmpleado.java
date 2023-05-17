@@ -35,55 +35,36 @@ public class ModificarDatosEmpleado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Empleado empleado = new Empleado();
+		empleado.setId_empleado(Integer.parseInt(request.getParameter("id")));
+		empleado.setNombre(request.getParameter("nombre"));
+		empleado.setApellido(request.getParameter("apellido"));
+		empleado.setDni(request.getParameter("dni"));
+		empleado.setEdad(Integer.parseInt(request.getParameter("edad")));
+		Date antiguedad = null;
+		HttpSession session= request.getSession();
+		
 		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				Empleado empleado = new Empleado();
-				empleado.setId_empleado(Integer.parseInt(request.getParameter("id")));
-				empleado.setNombre(request.getParameter("nombre"));
-				empleado.setApellido(request.getParameter("apellido"));
-				empleado.setDni(request.getParameter("dni"));
-				empleado.setEdad(Integer.parseInt(request.getParameter("edad")));
-				Date antiguedad = null;			
-				try {
-					antiguedad = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha"));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				empleado.setAntiguedad(antiguedad);
-				empleado.setId_jefe((Integer) session.getAttribute("id_empleado"));
-				// NO SE PUEDE MODIFICAR EL CAMPO DE USUARIO!!
-				ModeloJefe mj = new ModeloJefe();
-				try {
-					empleado.setUsuario(mj.getUsuarioPorId(request.getParameter("id_usuario")));
-					empleado.setTrabajo(mj.getTrabajo(request.getParameter("trabajo")));
-					boolean funciona=mj.modificarDatosEmpleado(empleado);
-					if(funciona) {
-						request.setAttribute("confirmacion", "Empleado modificado correctamente");
-					}
-					else {
-						request.setAttribute("error", "No se ha modificado el empleado correctamente");
-					}
-					
-					request.getRequestDispatcher("VerEmpleados").forward(request, response);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-			}		
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			antiguedad = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-		
+		empleado.setAntiguedad(antiguedad);
+		empleado.setId_jefe((Integer) session.getAttribute("id_empleado"));
+		// NO SE PUEDE MODIFICAR EL CAMPO DE USUARIO!!
+		ModeloJefe mj = new ModeloJefe();
+		try {
+			empleado.setUsuario(mj.getUsuarioPorId(request.getParameter("id_usuario")));
+			empleado.setTrabajo(mj.getTrabajo(request.getParameter("trabajo")));
+			
+			mj.modificarDatosEmpleado(empleado);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		response.sendRedirect("VerEmpleados");
 	}
 
 	/**

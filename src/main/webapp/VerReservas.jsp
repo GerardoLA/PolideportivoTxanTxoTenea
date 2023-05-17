@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Reservas</title>
+<title>Resrevas</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" >
 <link rel="stylesheet" href="css/tablas.css">
 </head>
@@ -25,12 +25,8 @@
 	</div>
 	
 	<div class="intro">
-	<p> <h2 style="color: red;">${error}</h2>  <h2 style="color: green;">${confirmacion}</h2> </p>
 		<table class="table table-striped">
 		 <thead style="background-color: #002d72;">
-		  	<tr>
-		  		<th colspan=5 style="text-align:center"><h2>VER RESERVAS</h2></th>
-		 	</tr>
 			<tr>
 				<th scope="row">DNI</th>
 				<th scope="row">SALA</th>

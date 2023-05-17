@@ -8,12 +8,7 @@
 <title>Grupos</title>
 </head>
 <body>
-
 	<table border=1>
-			 <tr>
-		  	<th colspan=7 style="text-align:center"><h2>VER GRUPOS</h2></th>
-		  	
-		  </tr>
 			<tr>
 				<th scope="row">ID</th>
 				<th scope="row">DIAS</th>

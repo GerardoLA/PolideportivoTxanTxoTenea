@@ -37,45 +37,22 @@ public class InsertarActividad extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				ModeloMonitor modMon= new ModeloMonitor();
-				
-				Actividad actividad = new Actividad(request.getParameter("id_actividad"),request.getParameter("nombre"),Double.parseDouble(request.getParameter("precio")));
-				
-				session.setAttribute("actividad", actividad);
+		ModeloMonitor modMon= new ModeloMonitor();
+		
+		Actividad actividad = new Actividad(request.getParameter("id_actividad"),request.getParameter("nombre"),Double.parseDouble(request.getParameter("precio")));
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("actividad", actividad);
 
-				try {
-					
-					boolean funciona=modMon.insertarActividad(actividad);
-					if(funciona) {
-						request.setAttribute("confirmacion", "Se ha insertado la actividad correctamente");
-						request.getRequestDispatcher("InsertarGrupoForm.jsp").forward(request, response);
-					}
-					else {
-						request.setAttribute("error", "No se ha insertado la actividad correctamente");
-						request.getRequestDispatcher("VerActividades").forward(request, response);
-					}					
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+		try {
+			modMon.insertarActividad(actividad);
 			
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		
-		
+		request.getRequestDispatcher("InsertarGrupoForm.jsp").forward(request, response);
 	}
 
 }

@@ -20,12 +20,9 @@
 	</div>
 	
 	<div class="intro">
-		<p> <h2 style="color: red;">${error}</h2>  <h2 style="color: green;">${confirmacion}</h2> </p>
+		
 			<table class="table table-striped">
                       <thead style="background-color: #002d72;">
-                <tr>
-		  			<th colspan=11 style="text-align:center"><h2>VER EMPLEADOS</h2></th>
-		  		</tr>
     			<tr>
       				<th scope="col">ID__EMPLEADO</th>
       				<th scope="col">NOMBRE</th>

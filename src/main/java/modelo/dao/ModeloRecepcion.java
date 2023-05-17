@@ -42,7 +42,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -74,7 +74,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}		
 	}
@@ -103,7 +103,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}			
 	}
@@ -137,7 +137,7 @@ public class ModeloRecepcion extends Conector{
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}		
 		return cliente;
 	}
@@ -173,7 +173,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return clientes;
@@ -204,7 +204,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}		
 	}
@@ -244,7 +244,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return inscripciones;
@@ -292,7 +292,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return inscripciones;
@@ -328,7 +328,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return inscripciones;
 	}
@@ -355,7 +355,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -388,7 +388,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return actividad;
 	}
@@ -423,7 +423,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return actividad;
 	}
@@ -456,7 +456,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return actividades;
 	}
@@ -492,7 +492,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return actividades;
 	}
@@ -521,7 +521,7 @@ public class ModeloRecepcion extends Conector{
 			id_actividad=result.getString("id_actividad");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return id_actividad;
@@ -556,7 +556,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return sala;
 	}
@@ -582,7 +582,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return id_sala;
 	}
@@ -614,7 +614,7 @@ public class ModeloRecepcion extends Conector{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		return salas;
 	}
@@ -649,7 +649,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return alquiler;
@@ -686,7 +686,7 @@ public class ModeloRecepcion extends Conector{
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}		
 		return alquileres;
 	}
@@ -723,7 +723,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return alquileres;
@@ -754,7 +754,7 @@ public class ModeloRecepcion extends Conector{
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}		
 		return alquileres;
 	}
@@ -781,7 +781,7 @@ public class ModeloRecepcion extends Conector{
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}			
 	}
@@ -808,7 +808,7 @@ public class ModeloRecepcion extends Conector{
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}		
 	}
@@ -841,7 +841,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return grupo;
@@ -876,7 +876,7 @@ public class ModeloRecepcion extends Conector{
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return grupos;
@@ -910,7 +910,7 @@ public class ModeloRecepcion extends Conector{
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return grupos;
@@ -949,7 +949,7 @@ public class ModeloRecepcion extends Conector{
 		getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return grupos;

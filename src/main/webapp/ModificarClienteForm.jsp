@@ -13,8 +13,8 @@
 	<div class="container shadow">
 		<h1>Modificar Cliente</h1>
 		<form action="ModificarCliente" class="w-50 mx-auto">
-			<label>Dni: ${cliente.dni}</label>
-			<input type="hidden" name="dni" class="form-control" placeholder="dni" value="${cliente.dni}">
+			<label>Dni: </label>
+			<input type="text" name="dni" class="form-control" placeholder="dni" value="${cliente.dni}">
 			<br><br>
 			<label>Nombre: </label>
 			<input type="text" name="nombre" class="form-control" placeholder="nombre" value="${cliente.nombre}">

@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.bean.Cliente;
 import modelo.dao.ModeloRecepcion;
@@ -34,59 +33,34 @@ public class ModificarCliente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		Cliente cliente=new Cliente();
+		
+		SimpleDateFormat antiguedad= new SimpleDateFormat("yyyy-mm-dd") ; 
+		
+		
+		cliente.setDni(request.getParameter("dni"));
+		cliente.setNombre(request.getParameter("nombre"));
+		cliente.setApellido(request.getParameter("apellido"));
+		cliente.setTelefono(request.getParameter("telefono"));
+		cliente.setMail(request.getParameter("mail"));
 		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				Cliente cliente=new Cliente();
-				
-				SimpleDateFormat antiguedad= new SimpleDateFormat("yyyy-mm-dd") ; 
-				
-				
-				cliente.setDni(request.getParameter("dni"));
-				cliente.setNombre(request.getParameter("nombre"));
-				cliente.setApellido(request.getParameter("apellido"));
-				cliente.setTelefono(request.getParameter("telefono"));
-				cliente.setMail(request.getParameter("mail"));
-				try {
-					cliente.setAntiguedad(antiguedad.parse(request.getParameter("antiguedad")));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				ModeloRecepcion modRec= new ModeloRecepcion();
-				
-				try {
-					boolean funciona=modRec.modificarCliente(cliente);
-					if(funciona) {
-						request.setAttribute("confirmacion", "Cliente modificado correctamente");
-					}
-					else {
-						request.setAttribute("error", "No se ha modificado el cliente correctamente");
-					}
-					
-					
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				request.getRequestDispatcher("VerClientes").forward(request, response);
-			}
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			cliente.setAntiguedad(antiguedad.parse(request.getParameter("antiguedad")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
+		ModeloRecepcion modRec= new ModeloRecepcion();
 		
+		try {
+			modRec.modificarCliente(cliente);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
+		request.getRequestDispatcher("VerClientes").forward(request, response);
 	}
 
 	/**

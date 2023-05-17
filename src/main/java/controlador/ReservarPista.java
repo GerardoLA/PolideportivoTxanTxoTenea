@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.bean.Alquiler;
 import modelo.dao.ModeloRecepcion;
@@ -30,27 +29,18 @@ public class ReservarPista extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModeloRecepcion modRec = new ModeloRecepcion();
 		
 		try {
-			ModeloRecepcion modRec = new ModeloRecepcion();
-			
-			try {
-				request.setAttribute("salas", modRec.getSalas());
-				request.setAttribute("clientes", modRec.getClientes());
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			request.getRequestDispatcher("ReservarPista.jsp").forward(request, response);
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			request.setAttribute("salas", modRec.getSalas());
+			request.setAttribute("clientes", modRec.getClientes());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
+		request.getRequestDispatcher("ReservarPista.jsp").forward(request, response);
 	}
 
 	/**
@@ -58,52 +48,27 @@ public class ReservarPista extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				ModeloRecepcion modRec = new ModeloRecepcion();
-				
-				Alquiler alquiler = new Alquiler();
-				
-				try {
-					alquiler.setCliente(modRec.getCliente(request.getParameter("dni")));
-					alquiler.setSala(modRec.getSala(modRec.getIdSala(request.getParameter("sala"))));
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				alquiler.setHora(request.getParameter("horas"));
-				
-				try {
-					boolean funciona=modRec.realizarReservaPista(alquiler);
-					if(funciona) {
-						request.setAttribute("confirmacion", "Pista reservada correctamente");
-					}
-					else {
-						request.setAttribute("error", "No se ha reservado la pista correctamente");
-					}
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				request.getRequestDispatcher("VerReservas").forward(request, response);
-			}
-			
+		ModeloRecepcion modRec = new ModeloRecepcion();
 		
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		Alquiler alquiler = new Alquiler();
+		
+		try {
+			alquiler.setCliente(modRec.getCliente(request.getParameter("dni")));
+			alquiler.setSala(modRec.getSala(modRec.getIdSala(request.getParameter("sala"))));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		alquiler.setHora(request.getParameter("horas"));
+		
+		try {
+			modRec.realizarReservaPista(alquiler);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		
+		request.getRequestDispatcher("VerReservas").forward(request, response);
 	}
 
 }

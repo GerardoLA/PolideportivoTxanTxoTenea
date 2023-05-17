@@ -41,48 +41,40 @@ public class Desktop extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-			String contrasena = request.getParameter("contrasena");
-			String nombre = request.getParameter("nombre");
-			
-			ModeloLogin ml = new ModeloLogin();
-			Usuario usuario = ml.getContrasena(nombre);
-			HttpSession session= request.getSession();
-
-			if(contrasena.equals(usuario.getContrasena())){
-					try {
-						session.setAttribute("id_empleado", ml.getIdEmpleado(usuario.getId_usuario()));
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				if(usuario.getId_usuario().contains("MON") || usuario.getId_usuario().equals("MON")){
-					response.sendRedirect("VerActividades");
-				}
-				else if(usuario.getId_usuario().contains("REC") || usuario.getId_usuario().equals("REC")){
-					response.sendRedirect("MenuRecepcionista.jsp");
-				}
-				else if(usuario.getId_usuario().contains("JEF") || usuario.getId_usuario().equals("JEF")) {
-					response.sendRedirect("MenuJefe.jsp");
-				}
-			}
-			else {
-				request.setAttribute("error", "Usuario o contrasena erroneos");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
+		String contrasena = request.getParameter("contrasena");
+		String nombre = request.getParameter("nombre");
 		
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
+		ModeloLogin ml = new ModeloLogin();
+		Usuario usuario = ml.getContrasena(nombre);
+		HttpSession session= request.getSession();
+
+		if(contrasena.equals(usuario.getContrasena())){
+				try {
+					session.setAttribute("id_empleado", ml.getIdEmpleado(usuario.getId_usuario()));
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			if(usuario.getId_usuario().contains("MON") || usuario.getId_usuario().equals("MON")){
+				response.sendRedirect("VerActividades");
+			}
+			else if(usuario.getId_usuario().contains("REC") || usuario.getId_usuario().equals("REC")){
+				response.sendRedirect("MenuRecepcionista.jsp");
+			}
+			else if(usuario.getId_usuario().contains("JEF") || usuario.getId_usuario().equals("JEF")) {
+				response.sendRedirect("MenuJefe.jsp");
+			}
+		}
+		else {
+			request.setAttribute("error", "Usuario o contrasena erroneos");
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
+	
 		
-		
-		
+		}
 	}
-}
 
 

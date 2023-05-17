@@ -41,7 +41,7 @@ PreparedStatement pst;
 	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}		
 	}
@@ -83,7 +83,7 @@ PreparedStatement pst;
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -109,7 +109,7 @@ PreparedStatement pst;
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -143,7 +143,7 @@ PreparedStatement pst;
 			getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 	
 		return actividades;	
@@ -177,34 +177,7 @@ PreparedStatement pst;
 			getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
-			}
-	
-		return actividades;	
-	}
-	
-	public ArrayList<Actividad>getActividades() throws ClassNotFoundException{
-		ArrayList<Actividad> actividades = new ArrayList<>();
-		try {
-			conectar();
-
-			pst = getCon().prepareStatement("SELECT * FROM actividades");
-			
-			ResultSet resultado = pst.executeQuery();
-			while(resultado.next()) {
-				Actividad actividad = new Actividad();
-				
-				actividad.setId(resultado.getString("id"));
-				actividad.setNombreActividad(resultado.getString("Nombreac"));
-				actividad.setPrecio(resultado.getDouble("Precio"));
-				
-				actividades.add(actividad);
-			}
-
-			getCon().close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 	
 		return actividades;	
@@ -232,7 +205,7 @@ PreparedStatement pst;
 			getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 	
 		return actividad;	
@@ -271,7 +244,7 @@ PreparedStatement pst;
 			getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 	
 		return actividades;
@@ -313,7 +286,7 @@ PreparedStatement pst;
 		
 		} catch (SQLException e) {
 			// TODO 	Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -343,7 +316,7 @@ PreparedStatement pst;
 		
 		} catch (SQLException e) {
 			// TODO 	Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -373,7 +346,7 @@ PreparedStatement pst;
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -401,7 +374,7 @@ PreparedStatement pst;
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 			return false;
 		}	
 	}
@@ -440,7 +413,7 @@ PreparedStatement pst;
 				getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 		return grupos;
 	}
@@ -474,7 +447,7 @@ PreparedStatement pst;
 			getCon().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				
+				e.printStackTrace();
 			}
 		return grupo;
 	}
@@ -500,7 +473,7 @@ PreparedStatement pst;
 			getCon().close();
 			return true;
 		} catch (ClassNotFoundException | SQLException e) {
-			
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -540,7 +513,7 @@ PreparedStatement pst;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 			
 		return empleado;
@@ -572,7 +545,7 @@ PreparedStatement pst;
 			getCon().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return usuario;
@@ -598,7 +571,7 @@ PreparedStatement pst;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return trabajo;	

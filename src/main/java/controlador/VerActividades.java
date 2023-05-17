@@ -30,35 +30,17 @@ public class VerActividades extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModeloMonitor modMon = new ModeloMonitor();
+		HttpSession session= request.getSession();
 		
 		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				ModeloMonitor modMon = new ModeloMonitor();
-				
-				try {
 
-					request.setAttribute("actividades", modMon.getActividades((Integer)session.getAttribute("id_empleado")));	
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				request.getRequestDispatcher("VerActividades.jsp").forward(request, response);
-			}
-			
-			
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			request.setAttribute("actividades", modMon.getActividades((Integer)session.getAttribute("id_empleado")));	
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-		
+		request.getRequestDispatcher("VerActividades.jsp").forward(request, response);
 	}
 
 	/**

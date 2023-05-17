@@ -12,10 +12,10 @@
 <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <h2 class="text-center text-dark mt-5">TxanTxoTenea</h2>
+        <h2 class="text-center text-dark mt-5">Nombre polideportivo</h2>
         <div class="card my-5">
 
-          <form class="card-body cardbody-color p-lg-5" Action="Desktop" method="post">
+          <form class="card-body cardbody-color p-lg-5"  method="post">
 
             <div class="text-center">
             

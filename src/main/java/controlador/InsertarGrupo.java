@@ -43,59 +43,38 @@ public class InsertarGrupo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				ModeloMonitor modMon = new ModeloMonitor();
-				Grupo grupo = new Grupo (request.getParameter("id_grupo"),request.getParameter("dias"),request.getParameter("horas"),Integer.parseInt(request.getParameter("maxPartic")),0);
-				Actividad actividad = (Actividad) session.getAttribute("actividad");
+		ModeloMonitor modMon = new ModeloMonitor();
+		HttpSession session = request.getSession();
+		Grupo grupo = new Grupo (request.getParameter("id_grupo"),request.getParameter("dias"),request.getParameter("horas"),Integer.parseInt(request.getParameter("maxPartic")),0);
+		Actividad actividad = (Actividad) session.getAttribute("actividad");
 
+		
+		
+		if(grupo.comprobarId(actividad.getId_actividad())) {
+			Imparten imparten= new Imparten();
+			
+			imparten.setActividad((Actividad) session.getAttribute("actividad"));
+			session.removeAttribute("actividad");
+			imparten.setGrupo(grupo);
+			
+			
+			try {
+				modMon.insertarGrupo(grupo);
+				imparten.setEmpleado(modMon.getEmpleado((Integer)session.getAttribute("id_empleado")));
 				
-				
-				if(grupo.comprobarId(actividad.getId_actividad())) {
-					Imparten imparten= new Imparten();
-					
-					imparten.setActividad((Actividad) session.getAttribute("actividad"));
-					session.removeAttribute("actividad");
-					imparten.setGrupo(grupo);
-					
-					
-					try {
-						
-						imparten.setEmpleado(modMon.getEmpleado((Integer)session.getAttribute("id_empleado")));
-						boolean funcionaG=modMon.insertarGrupo(grupo);
-						boolean funciona=modMon.insertarCruso(imparten);
-						
-						if(funciona && funcionaG) {
-							request.setAttribute("confirmacion", "Se ha insertado la actividad correctamente");
-						}
-						else {
-							request.setAttribute("error", "No se ha insertado la actividad correctamente");
-						}
-						
-						request.getRequestDispatcher("VerActividades").forward(request, response);
-						
-						
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					request.getRequestDispatcher("VerActividades").forward(request, response);
-				}
-				else {
-					request.getRequestDispatcher("InsertarGrupoForm.jsp").forward(request, response);
-				}
-			}	
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+				modMon.insertarCruso(imparten);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			request.getRequestDispatcher("VerActividades").forward(request, response);
 		}
+		else {
+			request.getRequestDispatcher("InsertarGrupoForm.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 }

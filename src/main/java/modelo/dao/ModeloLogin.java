@@ -32,10 +32,10 @@ public class ModeloLogin extends Conector {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
 		}
 		
 		return usuario;	

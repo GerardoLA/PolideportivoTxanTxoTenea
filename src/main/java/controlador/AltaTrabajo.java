@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.bean.Trabajo;
 import modelo.dao.ModeloJefe;
@@ -30,45 +29,18 @@ public class AltaTrabajo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		try {
-			HttpSession session = request.getSession();
-			
-			if((Integer) session.getAttribute("id_empleado")==null) {
-				request.setAttribute("error", "Inicia sesion antes de hacer cualquier operacion");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-			else{
-				ModeloJefe mp = new ModeloJefe();
-				Trabajo trabajo = new Trabajo();
-				trabajo.setNombre(request.getParameter("nombre"));
+		ModeloJefe mp = new ModeloJefe();
+		Trabajo trabajo = new Trabajo();
+		trabajo.setNombre(request.getParameter("nombre"));
 
-				try {					
-					boolean funciona=mp.AltaTrabajo(trabajo);
-					if(funciona) {
-						request.setAttribute("confirmacion", "Trabajo insertado correctamente");
-					}
-					else {
-						request.setAttribute("error", "No se ha insertado el trabajo correctamente");
-					}
-					
-					request.getRequestDispatcher("VerTrabajos").forward(request, response);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				request.getRequestDispatcher("VerTrabajos").forward(request, response);
-			}
-		} catch (Exception e) {
-			request.setAttribute("error", "Ha ocurrido un error, inicio sesion de nuevo porfavor");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		try {
+			mp.AltaTrabajo(trabajo);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		
-		
-		
+		request.getRequestDispatcher("VerTrabajos").forward(request, response);
 	}
 
 	/**
